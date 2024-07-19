@@ -16,6 +16,7 @@ init();
 /*-------------------------------- Functions --------------------------------*/
 function init() {
   renderBoard();
+  rollDiceBtn.addEventListener("click", playTurn)
 }
 
 function renderBoard() {
@@ -47,7 +48,6 @@ function renderBoard() {
   return randomNumber;
 }
 function playTurn() {
-  console.log(`playTurn ${Date.now()}`);
 }
 
 
