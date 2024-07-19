@@ -63,6 +63,7 @@ function rollDice() {
   return randomNumber;
 }
 function player1Turn() {
+  message.textContent = "Player's 2 Turn" 
   if (turn.name === "player2") {
     return;
   }
@@ -88,6 +89,7 @@ function player1Turn() {
   }
 }
 function player2Turn() {
+  message.textContent = "Player's 1 Turn" 
   if (turn.name === "player1") {
     return;
   }

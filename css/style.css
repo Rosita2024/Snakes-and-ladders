@@ -13,17 +13,22 @@ h1{
         text-align: center;
         margin-bottom: 20px;
         font-size: 80px;
-        color: rgb(0, 0, 0);
+        color: rgb(173, 0, 0);
         font-family: "Kaushan Script", cursive;
         
 }
 
 h2{
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
         font-family: "Kaushan Script", cursive;  
         font-size: 40px;
+        text-align: center;
       }
       
+h3{
+    font-size: 23px;
+    color: rgb(255, 255, 255); 
+    text-align: center;
 }
 
 button {    
@@ -57,9 +62,6 @@ img{
     margin-top: 100px;
     margin-bottom: 300px;
     display: flex;
-    /* margin-inline: auto; */
-    /* justify-content: center; */ 
-    /* align-items: center; */
 }
 
 .player1,
@@ -88,16 +90,22 @@ gap: 20px
     height: 80px;
     width: 80px;
     font-size: 65px;
-    text-align: center;  
+     
+}
+#whoPlay{
+    background-color: rgb(255, 255, 255);
+    height: 80px;
+    width: 200px;
+    font-size: 65px;
+ 
 }
 
+
 #corner-image {
-    position: fixed;
-    top: 10;
-    left: 20;
+    top: 100;
+    left: 80;
     width: 200px;
     height: auto;
-    z-index: 1000;
 }
 
 #newGame{
