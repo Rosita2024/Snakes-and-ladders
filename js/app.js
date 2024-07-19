@@ -1,5 +1,6 @@
 /*-------------------------------- Constants --------------------------------*/
-
+// let rollingSound = new Audio('rpg-dice-rolling-95182.mp3')
+// let winSound = new Audio('winharpsichord-39642.mp3')
 /*---------------------------- Variables (state) ----------------------------*/
 let currentPlayerIndex = 0;
 const player1 = {
@@ -18,6 +19,8 @@ let turn = player1;
 const boardDisplay = document.querySelector("#board");
 const player1RollDiceBtn = document.querySelector("#Player1RollDice");
 const player2RollDiceBtn = document.querySelector("#Player2RollDice");
+const snakesAndLadders = { 16: 6, 47: 26, 49: 11, 56: 53, 62: 19, 64: 60, 87: 24, 93: 73, 95: 75, 98: 78, 1: 38, 4: 14, 9: 31, 21: 42, 28: 84, 36: 44, 51: 67, 71: 91, 80: 99 };
+
 /*-------------------------------- Start Game --------------------------------*/
 init();
 
@@ -34,7 +37,7 @@ function renderBoard() {
       for (let j = 0; j < 10; j++) {
         const cellNum = (10 - i) * 10 - j;
         const boxEl = document.createElement("div");
-        boxEl.textContent = cellNum;
+        // boxEl.textContent = cellNum;
         boxEl.className = "box";
         boxEl.id = `box-${cellNum}`;
         boardDisplay.append(boxEl);
@@ -44,7 +47,7 @@ function renderBoard() {
         const cellNum = (10 - i) * 10 - j + 1;
 
         const boxEl = document.createElement("div");
-        boxEl.textContent = cellNum;
+        // boxEl.textContent = cellNum;
         boxEl.className = "box";
         boxEl.id = `box-${cellNum}`;
         boardDisplay.append(boxEl);
@@ -60,8 +63,11 @@ function player1Turn() {
   if (turn.name === "player2") {
     return;
   }
-  const diceRoll = rollDice();
-  player1.currentPosition += diceRoll;
+  let newRoll = rollDice();
+  player1.currentPosition += newRoll;
+  if (snakesAndLadders[player1.currentPosition]) {
+    player1.currentPosition = snakesAndLadders[player1.currentPosition]
+  }
   const newBoxId = `box-${player1.currentPosition}`;
   const newBoxElement = document.getElementById(newBoxId);
   if (player1.currentBoxElement) {
@@ -77,8 +83,11 @@ function player2Turn() {
   if (turn.name === "player1") {
     return;
   }
-  const diceRoll = rollDice();
-  player2.currentPosition += diceRoll;
+  let newRoll = rollDice();
+  player2.currentPosition += newRoll;
+  if (snakesAndLadders[player2.currentPosition]) {
+    player2.currentPosition = snakesAndLadders[player2.currentPosition]
+  }
   const newBoxId = `box-${player2.currentPosition}`;
   const newBoxElement = document.getElementById(newBoxId);
   if (player2.currentBoxElement) {
