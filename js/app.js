@@ -1,6 +1,6 @@
 /*-------------------------------- Constants --------------------------------*/
-// let rollingSound = new Audio('rpg-dice-rolling-95182.mp3')
-// let winSound = new Audio('winharpsichord-39642.mp3')
+let rollingSound = new Audio('Audio/dice-142528.mp3')
+
 /*---------------------------- Variables (state) ----------------------------*/
 let currentPlayerIndex = 0;
 const player1 = {
@@ -14,13 +14,15 @@ const player2 = {
   currentBoxElement: null,
 };
 let turn = player1;
+const snakesAndLadders = { 16: 6, 47: 26, 49: 11, 56: 53, 62: 19, 64: 60, 87: 24, 93: 73, 95: 75, 98: 78, 1: 38, 4: 14, 9: 31, 21: 42, 28: 84, 36: 44, 51: 67, 71: 91, 80: 99 };
 /*------------------------ Cached Element References ------------------------*/
-
+const player1Dice = document.querySelector("#player1Dice")
+const player2Dice = document.querySelector("#player2Dice")
 const boardDisplay = document.querySelector("#board");
 const player1RollDiceBtn = document.querySelector("#Player1RollDice");
 const player2RollDiceBtn = document.querySelector("#Player2RollDice");
-const snakesAndLadders = { 16: 6, 47: 26, 49: 11, 56: 53, 62: 19, 64: 60, 87: 24, 93: 73, 95: 75, 98: 78, 1: 38, 4: 14, 9: 31, 21: 42, 28: 84, 36: 44, 51: 67, 71: 91, 80: 99 };
-
+const message = document.querySelector("#message");
+const newGame = document.querySelector("#newGame")
 /*-------------------------------- Start Game --------------------------------*/
 init();
 
@@ -29,6 +31,7 @@ function init() {
   renderBoard();
   player1RollDiceBtn.addEventListener("click", player1Turn);
   player2RollDiceBtn.addEventListener("click", player2Turn);
+  newGame.addEventListener("click", reset)
 }
 
 function renderBoard() {
@@ -63,7 +66,9 @@ function player1Turn() {
   if (turn.name === "player2") {
     return;
   }
+  rollingSound.play();
   let newRoll = rollDice();
+  player1Dice.textContent = newRoll
   player1.currentPosition += newRoll;
   if (snakesAndLadders[player1.currentPosition]) {
     player1.currentPosition = snakesAndLadders[player1.currentPosition]
@@ -78,12 +83,17 @@ function player1Turn() {
   }
   player1.currentBoxElement = newBoxElement;
   turn = player2;
+  if (player1.currentPosition >99){
+    return message.textContent= "Congratulation Player 1 Win!"
+  }
 }
 function player2Turn() {
   if (turn.name === "player1") {
     return;
   }
+  rollingSound.play();
   let newRoll = rollDice();
+  player2Dice.textContent = newRoll
   player2.currentPosition += newRoll;
   if (snakesAndLadders[player2.currentPosition]) {
     player2.currentPosition = snakesAndLadders[player2.currentPosition]
@@ -98,5 +108,17 @@ function player2Turn() {
   }
   player2.currentBoxElement = newBoxElement;
   turn = player1;
+  if (player2.currentPosition >99){
+    return message.textContent= "Congratulation Player 2 Win!"
+  }
+}
+function reset (){
+ player1.currentPosition = 1
+ player2.currentPosition = 1
+ player1.currentBoxElement.classList.remove("player1");
+ player2.currentBoxElement.classList.remove("player2");
+ player1Dice.textContent = ""
+ player2Dice.textContent = ""
+ turn = player1;
 }
 /*----------------------------- Event Listeners -----------------------------*/
