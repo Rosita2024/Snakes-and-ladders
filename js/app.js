@@ -5,6 +5,10 @@ let currentPlayerIndex = 0;
 /*------------------------ Cached Element References ------------------------*/
 
 const boardDisplay = document.querySelector("#board");
+const player = {
+  currentPosition: 1,
+  currentBoxElement: null,
+};
 
 /*-------------------------------- Start Game --------------------------------*/
 init();
@@ -22,7 +26,7 @@ function renderBoard() {
         const boxEl = document.createElement("div");
         boxEl.textContent = cellNum;
         boxEl.className = "box";
-        boxEl.id = `box-${cellNum}`
+        boxEl.id = `box-${cellNum}`;
         boardDisplay.append(boxEl);
       }
     } else {
@@ -32,7 +36,7 @@ function renderBoard() {
         const boxEl = document.createElement("div");
         boxEl.textContent = cellNum;
         boxEl.className = "box";
-        boxEl.id = `box-${cellNum}`
+        boxEl.id = `box-${cellNum}`;
         boardDisplay.append(boxEl);
       }
     }
@@ -40,14 +44,13 @@ function renderBoard() {
 }
 
 function rollDice() {
-  const randomNumber= Math.floor(Math.random() * 6) + 1;
-  return randomNumber
+  const randomNumber = Math.floor(Math.random() * 6) + 1;
+  return randomNumber;
 }
 
 // function rollAndDisplay() {
 //   const randomNumber = rollDice();
 //   document.getElementById('result').textContent = `The random number rolled is: ${randomNumber}`;
 // }
-
 
 /*----------------------------- Event Listeners -----------------------------*/
