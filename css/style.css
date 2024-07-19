@@ -47,6 +47,30 @@ img{
     align-items: top;
 }
 
+#p1,
+#p2 {
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  background-color: rgb(236, 82, 82);
+  position: relative;
+  border: 3px solid black;
+
+
+.player {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+#player1 {
+    background-color: red;
+}
+
+#player2 {
+    background-color: blue;
+}
+
 #cell{
 background-color: blue;
 }

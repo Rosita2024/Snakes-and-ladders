@@ -1,10 +1,15 @@
 /*-------------------------------- Constants --------------------------------*/
 
 /*---------------------------- Variables (state) ----------------------------*/
-
+let currentPlayerIndex = 0;
 /*------------------------ Cached Element References ------------------------*/
 
 const boardDisplay = document.querySelector("#board");
+
+const players = [
+  { id: "player1", position: 0, element: document.createElement("div") },
+  // { id: "player2", position: 0, element: document.createElement("div") },
+];
 /*-------------------------------- Start Game --------------------------------*/
 init();
 /*-------------------------------- Functions --------------------------------*/
@@ -20,6 +25,7 @@ function renderBoard() {
         const boxEl = document.createElement("div");
         boxEl.textContent = cellNum;
         boxEl.className = "box";
+        boxEl.id = `box-${cellNum}`
         boardDisplay.append(boxEl);
       }
     } else {
@@ -29,10 +35,12 @@ function renderBoard() {
         const boxEl = document.createElement("div");
         boxEl.textContent = cellNum;
         boxEl.className = "box";
+        boxEl.id = `box-${cellNum}`
         boardDisplay.append(boxEl);
       }
     }
   }
 }
+
 
 /*----------------------------- Event Listeners -----------------------------*/
