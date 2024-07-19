@@ -6,12 +6,9 @@ let currentPlayerIndex = 0;
 
 const boardDisplay = document.querySelector("#board");
 
-const players = [
-  { id: "player1", position: 0, element: document.createElement("div") },
-  // { id: "player2", position: 0, element: document.createElement("div") },
-];
 /*-------------------------------- Start Game --------------------------------*/
 init();
+
 /*-------------------------------- Functions --------------------------------*/
 function init() {
   renderBoard();
@@ -41,6 +38,16 @@ function renderBoard() {
     }
   }
 }
+
+function rollDice() {
+  const randomNumber= Math.floor(Math.random() * 6) + 1;
+  return randomNumber
+}
+
+// function rollAndDisplay() {
+//   const randomNumber = rollDice();
+//   document.getElementById('result').textContent = `The random number rolled is: ${randomNumber}`;
+// }
 
 
 /*----------------------------- Event Listeners -----------------------------*/
