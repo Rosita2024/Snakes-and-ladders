@@ -9,14 +9,14 @@ const player = {
 /*------------------------ Cached Element References ------------------------*/
 
 const boardDisplay = document.querySelector("#board");
-const rollDiceBtn = document.querySelector("#rollDice")
+const rollDiceBtn = document.querySelector("#rollDice");
 /*-------------------------------- Start Game --------------------------------*/
 init();
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
   renderBoard();
-  rollDiceBtn.addEventListener("click", playTurn)
+  rollDiceBtn.addEventListener("click", playTurn);
 }
 
 function renderBoard() {
@@ -43,12 +43,21 @@ function renderBoard() {
     }
   }
 }
-  function rollDice() {
+function rollDice() {
   const randomNumber = Math.floor(Math.random() * 6) + 1;
   return randomNumber;
 }
 function playTurn() {
+  const diceRoll = rollDice();
+  player.currentPosition += diceRoll;
+  const newBoxId = `box-${player.currentPosition}`;
+  const newBoxElement = document.getElementById(newBoxId);
+  if (player.currentBoxElement) {
+    player.currentBoxElement.classList.remove("player1");
+  }
+  if (newBoxElement) {
+    newBoxElement.classList.add("player1");
+  }
+  player.currentBoxElement = newBoxElement;
 }
-
-
 /*----------------------------- Event Listeners -----------------------------*/
