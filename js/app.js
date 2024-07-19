@@ -2,14 +2,14 @@
 
 /*---------------------------- Variables (state) ----------------------------*/
 let currentPlayerIndex = 0;
-/*------------------------ Cached Element References ------------------------*/
-
-const boardDisplay = document.querySelector("#board");
 const player = {
   currentPosition: 1,
   currentBoxElement: null,
 };
+/*------------------------ Cached Element References ------------------------*/
 
+const boardDisplay = document.querySelector("#board");
+const rollDiceBtn = document.querySelector("#rollDice")
 /*-------------------------------- Start Game --------------------------------*/
 init();
 
@@ -42,15 +42,13 @@ function renderBoard() {
     }
   }
 }
-
-function rollDice() {
+  function rollDice() {
   const randomNumber = Math.floor(Math.random() * 6) + 1;
   return randomNumber;
 }
+function playTurn() {
+  console.log(`playTurn ${Date.now()}`);
+}
 
-// function rollAndDisplay() {
-//   const randomNumber = rollDice();
-//   document.getElementById('result').textContent = `The random number rolled is: ${randomNumber}`;
-// }
 
 /*----------------------------- Event Listeners -----------------------------*/
