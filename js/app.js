@@ -2,21 +2,30 @@
 
 /*---------------------------- Variables (state) ----------------------------*/
 let currentPlayerIndex = 0;
-const player = {
+const player1 = {
+  name: "player1",
   currentPosition: 1,
   currentBoxElement: null,
 };
+const player2 = {
+  name: "player2",
+  currentPosition: 1,
+  currentBoxElement: null,
+};
+let turn = player1;
 /*------------------------ Cached Element References ------------------------*/
 
 const boardDisplay = document.querySelector("#board");
-const rollDiceBtn = document.querySelector("#rollDice");
+const player1RollDiceBtn = document.querySelector("#Player1RollDice");
+const player2RollDiceBtn = document.querySelector("#Player2RollDice");
 /*-------------------------------- Start Game --------------------------------*/
 init();
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
   renderBoard();
-  rollDiceBtn.addEventListener("click", playTurn);
+  player1RollDiceBtn.addEventListener("click", player1Turn);
+  player2RollDiceBtn.addEventListener("click", player2Turn);
 }
 
 function renderBoard() {
@@ -47,17 +56,38 @@ function rollDice() {
   const randomNumber = Math.floor(Math.random() * 6) + 1;
   return randomNumber;
 }
-function playTurn() {
+function player1Turn() {
+  if (turn.name === "player2") {
+    return;
+  }
   const diceRoll = rollDice();
-  player.currentPosition += diceRoll;
-  const newBoxId = `box-${player.currentPosition}`;
+  player1.currentPosition += diceRoll;
+  const newBoxId = `box-${player1.currentPosition}`;
   const newBoxElement = document.getElementById(newBoxId);
-  if (player.currentBoxElement) {
-    player.currentBoxElement.classList.remove("player1");
+  if (player1.currentBoxElement) {
+    player1.currentBoxElement.classList.remove("player1");
   }
   if (newBoxElement) {
     newBoxElement.classList.add("player1");
   }
-  player.currentBoxElement = newBoxElement;
+  player1.currentBoxElement = newBoxElement;
+  turn = player2;
+}
+function player2Turn() {
+  if (turn.name === "player1") {
+    return;
+  }
+  const diceRoll = rollDice();
+  player2.currentPosition += diceRoll;
+  const newBoxId = `box-${player2.currentPosition}`;
+  const newBoxElement = document.getElementById(newBoxId);
+  if (player2.currentBoxElement) {
+    player2.currentBoxElement.classList.remove("player2");
+  }
+  if (newBoxElement) {
+    newBoxElement.classList.add("player2");
+  }
+  player2.currentBoxElement = newBoxElement;
+  turn = player1;
 }
 /*----------------------------- Event Listeners -----------------------------*/
