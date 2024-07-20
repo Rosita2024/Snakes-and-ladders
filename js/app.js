@@ -113,6 +113,7 @@ function player2Turn() {
   if (player2.currentPosition >99){
     return message.textContent= "Congratulation Player 2 Win!"
   }
+
 }
 function reset (){
  player1.currentPosition = 1
