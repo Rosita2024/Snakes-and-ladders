@@ -1,6 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/
 let rollingSound = new Audio("Audio/dice-142528.mp3");
-
 /*---------------------------- Variables (state) ----------------------------*/
 let currentPlayerIndex = 0;
 const player1 = {
@@ -45,7 +44,6 @@ const message = document.querySelector("#message");
 const newGame = document.querySelector("#newGame");
 /*-------------------------------- Start Game --------------------------------*/
 init();
-
 /*-------------------------------- Functions --------------------------------*/
 function init() {
   renderBoard();
@@ -60,7 +58,6 @@ function renderBoard() {
       for (let j = 0; j < 10; j++) {
         const cellNum = (10 - i) * 10 - j;
         const boxEl = document.createElement("div");
-        // boxEl.textContent = cellNum;
         boxEl.className = "box";
         boxEl.id = `box-${cellNum}`;
         boardDisplay.append(boxEl);
@@ -70,7 +67,6 @@ function renderBoard() {
         const cellNum = (10 - i) * 10 - j + 1;
 
         const boxEl = document.createElement("div");
-        // boxEl.textContent = cellNum;
         boxEl.className = "box";
         boxEl.id = `box-${cellNum}`;
         boardDisplay.append(boxEl);
