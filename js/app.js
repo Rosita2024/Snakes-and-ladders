@@ -137,12 +137,9 @@ function player2Turn() {
 function reset() {
   player1.currentPosition = 1;
   player2.currentPosition = 1;
-  if (player1.currentBoxElement) {
-    player1.currentBoxElement.classList.remove("player1");
-  }
-  if (player1.currentBoxElement) {
-    player2.currentBoxElement.classList.remove("player2");
-  }
+
+  player1.currentBoxElement.classList.remove("player1");
+  player2.currentBoxElement.classList.remove("player2");
   player1Dice.textContent = "";
   player2Dice.textContent = "";
   turn = player1;
